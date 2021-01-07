@@ -1,0 +1,15 @@
+{
+  "name": "com.boscohyun.uniui",
+  "displayName": "UniUI",
+  "version": "0.1.0",
+  "unity": "2020.2",
+  "description": "A simple UI management package for Unity.",
+  "keywords": [ "UI", "Manager", "MVP", "MVRP", "UniRx", "UniTask" ],
+  "license": "MIT",
+  "category": "UI",
+  "dependencies": {
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.1.0",
+    "com.neuecc.unirx": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts#master",
+    "com.unity.addressables": "1.16.15"
+  }
+}
