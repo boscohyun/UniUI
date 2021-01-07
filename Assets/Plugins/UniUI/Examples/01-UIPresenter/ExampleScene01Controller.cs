@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Boscohyun.UniUI.Examples
 {
-    public class UIPresenterController : MonoBehaviour
+    public class ExampleScene01Controller : MonoBehaviour
     {
         [SerializeField]
         private UIPresenter uiWhitePresenter;

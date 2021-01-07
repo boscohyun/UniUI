@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 1824404746}
   - component: {fileID: 1824404745}
   m_Layer: 0
-  m_Name: UIPresenterController
+  m_Name: SceneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
