@@ -7,18 +7,18 @@ namespace Boscohyun.UniUI.Examples
     public class UIPresenterController : MonoBehaviour
     {
         [SerializeField]
-        private UIPresenter _uiWhitePresenter;
+        private UIPresenter uiWhitePresenter;
 
         [SerializeField]
-        private Button _showButton;
+        private Button showButton;
         
         [SerializeField]
-        private Button _hideButton;
+        private Button hideButton;
 
         private void Awake()
         {
-            _showButton.onClick.AsObservable().Subscribe(_ => _uiWhitePresenter.Show()).AddTo(gameObject);
-            _hideButton.onClick.AsObservable().Subscribe(_ => _uiWhitePresenter.Hide()).AddTo(gameObject);
+            showButton.onClick.AsObservable().Subscribe(_ => uiWhitePresenter.Show()).AddTo(gameObject);
+            hideButton.onClick.AsObservable().Subscribe(_ => uiWhitePresenter.Hide()).AddTo(gameObject);
         }
     }
 }
