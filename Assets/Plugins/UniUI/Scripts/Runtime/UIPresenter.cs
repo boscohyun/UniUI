@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UniRx;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Boscohyun.UniUI
     [RequireComponent(typeof(RectTransform))]
     public class UIPresenter : MonoBehaviour
     {
-        private enum AnimationState
+        protected enum AnimationState
         {
             Shown = 0,
             Hidden,
@@ -16,7 +17,7 @@ namespace Boscohyun.UniUI
         }
         
         [SerializeField]
-        private AnimationState animationState;
+        protected AnimationState animationState;
 
         public bool IsShowing => animationState == AnimationState.InShowAnimation ||
                                  animationState == AnimationState.Shown;
@@ -38,18 +39,17 @@ namespace Boscohyun.UniUI
             {
                 return Observable.Return(this);
             }
-            
-            return ShowAnimation(skipAnimation)
+
+            return Observable.FromMicroCoroutine(() => ShowAnimation(skipAnimation))
                 .Select(_ => this)
                 .Finally(Shown);
         }
         
-        // To be async or coroutine?
-        protected virtual IObservable<Unit> ShowAnimation(bool skip = default)
+        protected virtual IEnumerator ShowAnimation(bool skip = default)
         {
             animationState = AnimationState.InShowAnimation;
             gameObject.SetActive(true);
-            return Observable.Empty<Unit>();
+            yield break;
         }
 
         protected virtual void Shown()
@@ -77,16 +77,15 @@ namespace Boscohyun.UniUI
                 return Observable.Empty<Unit>();
             }
             
-            return HideAnimation(skipAnimation)
+            return Observable.FromMicroCoroutine(() => HideAnimation(skipAnimation))
                 .Finally(Hidden);
         }
-
-        // To be async or coroutine?
-        protected virtual IObservable<Unit> HideAnimation(bool skip = default)
+        
+        protected virtual IEnumerator HideAnimation(bool skip = default)
         {
             animationState = AnimationState.InHideAnimation;
             gameObject.SetActive(false);
-            return Observable.Empty<Unit>();
+            yield break;
         }
 
         protected virtual void Hidden()
