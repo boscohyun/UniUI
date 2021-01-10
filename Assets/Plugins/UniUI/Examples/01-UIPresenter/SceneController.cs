@@ -2,12 +2,12 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Boscohyun.UniUI.Examples
+namespace Boscohyun.UniUI.Examples.UIPresenter
 {
-    public class ExampleScene01Controller : MonoBehaviour
+    public class SceneController : MonoBehaviour
     {
         [SerializeField]
-        private UIPresenter uiWhitePresenter;
+        private UniUI.UIPresenter uiWhitePresenter;
 
         [SerializeField]
         private Button showButton;
