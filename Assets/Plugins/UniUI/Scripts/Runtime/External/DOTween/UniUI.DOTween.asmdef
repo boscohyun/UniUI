@@ -1,0 +1,23 @@
+{
+    "name": "UniUI.DOTween",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6d0ef5fdcb6a1476bb0bf66b66be9c23",
+        "GUID:b85a9b696dea92b4f9d0efe8b3f0e5b7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.demigiant.dotween",
+            "expression": "",
+            "define": "UNIUI_DOTWEEN_SUPPORT"
+        }
+    ],
+    "noEngineReferences": false
+}
