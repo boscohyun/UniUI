@@ -1220,15 +1220,8 @@ MonoBehaviour:
     animation.
 
 
-    You can edit Show and Hide durations.
-
-
-    You can click <b>Show</b>
-    and <b>Hide</b> buttons below.
-
-
-    These buttons are <b><color=red>not</color>
-    UIPresenter</b>.'
+    You can edit <b>Show</b> and <b>Hide</b> durations at <b>UIPresenterWithScriptAnimation</b>
+    component.'
 --- !u!222 &1193877813
 CanvasRenderer:
   m_ObjectHideFlags: 0
