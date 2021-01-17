@@ -1,19 +1,10 @@
 using System;
-using System.Collections;
 using UniRx;
-using UnityEngine;
 
 namespace Boscohyun.UniUI.Examples.UIPresenter
 {
-    public class UIPresenterWithAnimatorAnimation02 : UniUI.UIPresenter
+    public class UIPresenterWithAnimatorAnimation02 : UIPresenterWithAnimatorAnimation
     {
-        private static readonly int AnimatorHashHide = Animator.StringToHash("Hide");
-        
-        private static readonly int AnimatorHashShow = Animator.StringToHash("Show");
-
-        [SerializeField]
-        private Animator animator;
-
         private void Awake()
         {
             animator.enabled = false;
@@ -42,20 +33,6 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
         {
             base.ShowAnimationBegin(skip);
             animator.enabled = true;
-            animator.Play(AnimatorHashShow, 0, skip ? 1f : 0f);
-        }
-
-        protected override IEnumerator ShowAnimation()
-        {
-            while (animator.GetCurrentAnimatorStateInfo(0).shortNameHash != AnimatorHashShow)
-            {
-                yield return null;
-            }
-            
-            while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-            {
-                yield return null;
-            }
         }
 
         protected override void ShowAnimationEnd()
@@ -86,22 +63,8 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
         {
             base.HideAnimationBegin(skip);
             animator.enabled = true;
-            animator.Play(AnimatorHashHide, 0, skip ? 1f : 0f);
         }
-
-        protected override IEnumerator HideAnimation()
-        {
-            while (animator.GetCurrentAnimatorStateInfo(0).shortNameHash != AnimatorHashHide)
-            {
-                yield return null;
-            }
-            
-            while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-            {
-                yield return null;
-            }
-        }
-
+        
         protected override void HideAnimationEnd()
         {
             animator.enabled = false;

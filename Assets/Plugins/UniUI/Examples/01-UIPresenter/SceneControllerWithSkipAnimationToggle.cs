@@ -4,24 +4,15 @@ using UnityEngine.UI;
 
 namespace Boscohyun.UniUI.Examples.UIPresenter
 {
-    public class SceneControllerWithSkipAnimationToggle : MonoBehaviour
+    public class SceneControllerWithSkipAnimationToggle : SceneController
     {
-        [SerializeField]
-        private UniUI.UIPresenter uiPresenter;
-
-        [SerializeField]
-        private Button showButton;
-
-        [SerializeField]
-        private Button hideButton;
-        
         [SerializeField]
         private Toggle skipShowAnimationToggle;
         
         [SerializeField]
         private Toggle skipHideAnimationToggle;
 
-        private void Awake()
+        protected override void Awake()
         {
             uiPresenter.OnShowAnimationBegin
                 .Subscribe(_ => Debug.Log($"UIPresenter Show Animation Begin. Skip({skipShowAnimationToggle.isOn})"))

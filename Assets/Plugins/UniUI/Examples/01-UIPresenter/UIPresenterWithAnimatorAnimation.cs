@@ -5,12 +5,12 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
 {
     public class UIPresenterWithAnimatorAnimation : UniUI.UIPresenter
     {
-        private static readonly int AnimatorHashHide = Animator.StringToHash("Hide");
+        protected static readonly int AnimatorHashHide = Animator.StringToHash("Hide");
         
-        private static readonly int AnimatorHashShow = Animator.StringToHash("Show");
+        protected static readonly int AnimatorHashShow = Animator.StringToHash("Show");
 
         [SerializeField]
-        private Animator animator;
+        protected Animator animator;
 
         protected override void ShowAnimationBegin(bool skip = default)
         {

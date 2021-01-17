@@ -7,15 +7,15 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
     public class SceneController : MonoBehaviour
     {
         [SerializeField]
-        private UniUI.UIPresenter uiPresenter;
+        protected UniUI.UIPresenter uiPresenter;
 
         [SerializeField]
-        private Button showButton;
+        protected Button showButton;
 
         [SerializeField]
-        private Button hideButton;
+        protected Button hideButton;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             uiPresenter.OnShowAnimationBegin
                 .Subscribe(_ => Debug.Log("UIPresenter Show Animation Begin"))
