@@ -14,6 +14,8 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
 
         protected override void Awake()
         {
+            InitializeSceneButtons();
+            
             uiPresenter.OnShowAnimationBegin
                 .Subscribe(_ => Debug.Log($"UIPresenter Show Animation Begin. Skip({skipShowAnimationToggle.isOn})"))
                 .AddTo(gameObject);
