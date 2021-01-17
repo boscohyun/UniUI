@@ -1,11 +1,24 @@
 using UniRx;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
 namespace Boscohyun.UniUI.Examples.UIPresenter
 {
     public class SceneController : MonoBehaviour
     {
+        [SerializeField]
+        private Button previousSceneButton;
+        
+        [SerializeField]
+        private AssetReference previousScene;
+
+        [SerializeField]
+        private Button nextSceneButton;
+        
+        [SerializeField]
+        private AssetReference nextScene;
+        
         [SerializeField]
         protected UniUI.UIPresenter uiPresenter;
 
@@ -17,6 +30,8 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
 
         protected virtual void Awake()
         {
+            InitializeSceneButtons();
+            
             uiPresenter.OnShowAnimationBegin
                 .Subscribe(_ => Debug.Log("UIPresenter Show Animation Begin"))
                 .AddTo(gameObject);
@@ -32,6 +47,30 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
             
             showButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Show()).AddTo(gameObject);
             hideButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Hide()).AddTo(gameObject);
+        }
+
+        protected void InitializeSceneButtons()
+        {
+            previousSceneButton.onClick.AsObservable().Subscribe(_ =>
+            {
+                if (!previousScene.RuntimeKeyIsValid())
+                {
+                    Debug.LogWarning($"{nameof(previousScene)} is invalid.");
+                    return;
+                }
+
+                Addressables.LoadSceneAsync(previousScene);
+            }).AddTo(gameObject);
+            nextSceneButton.onClick.AsObservable().Subscribe(_ =>
+            {
+                if (!nextScene.RuntimeKeyIsValid())
+                {
+                    Debug.LogWarning($"{nameof(nextScene)} is invalid.");
+                    return;
+                }
+                
+                Addressables.LoadSceneAsync(nextScene);
+            }).AddTo(gameObject);
         }
     }
 }
