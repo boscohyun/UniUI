@@ -19,8 +19,24 @@ namespace Boscohyun.UniUI
         [SerializeField]
         protected AnimationState animationState;
 
+        protected readonly Subject<UIPresenter> ShowAnimationBeginSubject = new Subject<UIPresenter>();
+        
+        protected readonly Subject<UIPresenter> ShowAnimationEndSubject = new Subject<UIPresenter>();
+        
+        protected readonly Subject<UIPresenter> HideAnimationBeginSubject = new Subject<UIPresenter>();
+        
+        protected readonly Subject<UIPresenter> HideAnimationEndSubject = new Subject<UIPresenter>();
+
         public bool IsShowing => animationState == AnimationState.InShowAnimation ||
                                  animationState == AnimationState.Shown;
+        
+        public IObservable<UIPresenter> OnShowAnimationBegin => ShowAnimationBeginSubject;
+
+        public IObservable<UIPresenter> OnShowAnimationEnd => ShowAnimationEndSubject;
+        
+        public IObservable<UIPresenter> OnHideAnimationBegin => HideAnimationBeginSubject;
+
+        public IObservable<UIPresenter> OnHideAnimationEnd => HideAnimationEndSubject;
 
         #region Show
 
@@ -32,7 +48,7 @@ namespace Boscohyun.UniUI
         
         public void Show(bool skipAnimation, Action<UIPresenter> callback) =>
             ShowAsObservable(skipAnimation).Subscribe(presenter => callback?.Invoke(presenter));
-        
+
         public virtual IObservable<UIPresenter> ShowAsObservable(bool skipAnimation = default)
         {
             if (animationState != AnimationState.Hidden)
@@ -40,20 +56,31 @@ namespace Boscohyun.UniUI
                 return Observable.Return(this);
             }
 
-            return Observable.FromMicroCoroutine(() => ShowAnimation(skipAnimation))
-                .Select(_ => this)
-                .Finally(Shown);
+            ShowAnimationBegin(skipAnimation);
+            
+            IObservable<UIPresenter> observable = skipAnimation
+                ? Observable.Return(this)
+                : Observable.FromCoroutine(ShowAnimation)
+                    .Select(_ => this);
+
+            return observable.Finally(ShowAnimationEnd);
         }
-        
-        protected virtual IEnumerator ShowAnimation(bool skip = default)
+
+        protected virtual void ShowAnimationBegin(bool skip = default)
         {
             animationState = AnimationState.InShowAnimation;
             gameObject.SetActive(true);
+            ShowAnimationBeginSubject.OnNext(this);
+        }
+
+        protected virtual IEnumerator ShowAnimation()
+        {
             yield break;
         }
 
-        protected virtual void Shown()
+        protected virtual void ShowAnimationEnd()
         {
+            ShowAnimationEndSubject.OnNext(this);
             animationState = AnimationState.Shown;
         }
 
@@ -77,19 +104,30 @@ namespace Boscohyun.UniUI
                 return Observable.Empty<Unit>();
             }
             
-            return Observable.FromMicroCoroutine(() => HideAnimation(skipAnimation))
-                .Finally(Hidden);
+            HideAnimationBegin(skipAnimation);
+
+            IObservable<Unit> observable = skipAnimation
+                ? Observable.Return(Unit.Default)
+                : Observable.FromCoroutine(HideAnimation);
+            
+            return observable.Finally(HideAnimationEnd);
         }
-        
-        protected virtual IEnumerator HideAnimation(bool skip = default)
+
+        protected virtual void HideAnimationBegin(bool skip = default)
         {
             animationState = AnimationState.InHideAnimation;
-            gameObject.SetActive(false);
+            HideAnimationBeginSubject.OnNext(this);
+        }
+        
+        protected virtual IEnumerator HideAnimation()
+        {
             yield break;
         }
 
-        protected virtual void Hidden()
+        protected virtual void HideAnimationEnd()
         {
+            gameObject.SetActive(false);
+            HideAnimationEndSubject.OnNext(this);
             animationState = AnimationState.Hidden;
         }
 

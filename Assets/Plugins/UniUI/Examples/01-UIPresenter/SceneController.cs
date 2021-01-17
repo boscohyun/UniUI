@@ -7,18 +7,31 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
     public class SceneController : MonoBehaviour
     {
         [SerializeField]
-        private UniUI.UIPresenter uiWhitePresenter;
+        protected UniUI.UIPresenter uiPresenter;
 
         [SerializeField]
-        private Button showButton;
-        
-        [SerializeField]
-        private Button hideButton;
+        protected Button showButton;
 
-        private void Awake()
+        [SerializeField]
+        protected Button hideButton;
+
+        protected virtual void Awake()
         {
-            showButton.onClick.AsObservable().Subscribe(_ => uiWhitePresenter.Show()).AddTo(gameObject);
-            hideButton.onClick.AsObservable().Subscribe(_ => uiWhitePresenter.Hide()).AddTo(gameObject);
+            uiPresenter.OnShowAnimationBegin
+                .Subscribe(_ => Debug.Log("UIPresenter Show Animation Begin"))
+                .AddTo(gameObject);
+            uiPresenter.OnShowAnimationEnd
+                .Subscribe(_ => Debug.Log("UIPresenter Show Animation End"))
+                .AddTo(gameObject);
+            uiPresenter.OnHideAnimationBegin
+                .Subscribe(_ => Debug.Log("UIPresenter Hide Animation Begin"))
+                .AddTo(gameObject);
+            uiPresenter.OnHideAnimationEnd
+                .Subscribe(_ => Debug.Log("UIPresenter Hide Animation End"))
+                .AddTo(gameObject);
+            
+            showButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Show()).AddTo(gameObject);
+            hideButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Hide()).AddTo(gameObject);
         }
     }
 }
