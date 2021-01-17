@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c3f2d15ba04441b2f01e46abb4db5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiWhitePresenter: {fileID: 802828768}
+  uiPresenter: {fileID: 802828768}
   showButton: {fileID: 2107429490}
   hideButton: {fileID: 299785962}
 --- !u!4 &1824404746
