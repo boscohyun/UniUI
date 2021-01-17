@@ -1,4 +1,6 @@
 using System.Collections;
+using Cysharp.Threading.Tasks;
+using UniRx;
 using UnityEngine;
 
 namespace Boscohyun.UniUI.Examples.UIPresenter
@@ -22,13 +24,13 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
             canvasGroup.alpha = skip ? 1f : 0f;
         }
 
-        protected override IEnumerator ShowAnimation()
+        protected override async UniTask ShowAnimationAsync()
         {
             float deltaAlpha = 1f / showDuration;
             while (canvasGroup.alpha < 1f)
             {
                 canvasGroup.alpha += deltaAlpha * Time.deltaTime;
-                yield return null;
+                await UniTask.NextFrame();
             }
 
             canvasGroup.alpha = 1f;
@@ -40,13 +42,13 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
             base.HideAnimationBegin(skip);
         }
 
-        protected override IEnumerator HideAnimation()
+        protected override async UniTask HideAnimationAsync()
         {
             float deltaAlpha = 1f / hideDuration;
             while (canvasGroup.alpha > 0.001f)
             {
                 canvasGroup.alpha -= deltaAlpha * Time.deltaTime;
-                yield return null;
+                await UniTask.NextFrame();
             }
 
             canvasGroup.alpha = 0f;

@@ -1,4 +1,5 @@
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Boscohyun.UniUI.Examples.UIPresenter
@@ -18,17 +19,10 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
             animator.Play(AnimatorHashShow, 0, skip ? 1f : 0f);
         }
 
-        protected override IEnumerator ShowAnimation()
+        protected override async UniTask ShowAnimationAsync()
         {
-            while (animator.GetCurrentAnimatorStateInfo(0).shortNameHash != AnimatorHashShow)
-            {
-                yield return null;
-            }
-            
-            while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-            {
-                yield return null;
-            }
+            await UniTask.WaitWhile(() => animator.GetCurrentAnimatorStateInfo(0).shortNameHash != AnimatorHashShow);
+            await UniTask.WaitWhile(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f);
         }
 
         protected override void HideAnimationBegin(bool skip = default)
@@ -37,17 +31,10 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
             animator.Play(AnimatorHashHide, 0, skip ? 1f : 0f);
         }
 
-        protected override IEnumerator HideAnimation()
+        protected override async UniTask HideAnimationAsync()
         {
-            while (animator.GetCurrentAnimatorStateInfo(0).shortNameHash != AnimatorHashHide)
-            {
-                yield return null;
-            }
-            
-            while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-            {
-                yield return null;
-            }
+            await UniTask.WaitWhile(() => animator.GetCurrentAnimatorStateInfo(0).shortNameHash != AnimatorHashHide);
+            await UniTask.WaitWhile(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f);
         }
     }
 }

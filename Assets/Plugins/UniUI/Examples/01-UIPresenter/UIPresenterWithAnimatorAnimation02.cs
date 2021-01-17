@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UniRx;
 
 namespace Boscohyun.UniUI.Examples.UIPresenter
@@ -18,11 +19,10 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
             }
 
             ShowAnimationBegin(skipAnimation);
-            
+
             IObservable<UniUI.UIPresenter> observable = skipAnimation
                 ? Observable.Return(this)
-                : Observable.FromCoroutine(ShowAnimation)
-                    .Select(_ => this);
+                : ShowAnimationAsync().ToObservable().Select(_ => this);
 
             return observable
                 .DelayFrame(1)
@@ -52,7 +52,7 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
 
             IObservable<Unit> observable = skipAnimation
                 ? Observable.Return(Unit.Default)
-                : Observable.FromCoroutine(HideAnimation);
+                : HideAnimationAsync().ToObservable().Select(_ => Unit.Default);
             
             return observable
                 .DelayFrame(1)

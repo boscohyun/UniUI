@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
 
@@ -60,8 +61,7 @@ namespace Boscohyun.UniUI
             
             IObservable<UIPresenter> observable = skipAnimation
                 ? Observable.Return(this)
-                : Observable.FromCoroutine(ShowAnimation)
-                    .Select(_ => this);
+                : ShowAnimationAsync().ToObservable().Select(_ => this);
 
             return observable.Finally(ShowAnimationEnd);
         }
@@ -72,10 +72,10 @@ namespace Boscohyun.UniUI
             gameObject.SetActive(true);
             ShowAnimationBeginSubject.OnNext(this);
         }
-
-        protected virtual IEnumerator ShowAnimation()
+        
+        protected virtual async UniTask ShowAnimationAsync()
         {
-            yield break;
+            await UniTask.CompletedTask;
         }
 
         protected virtual void ShowAnimationEnd()
@@ -108,7 +108,7 @@ namespace Boscohyun.UniUI
 
             IObservable<Unit> observable = skipAnimation
                 ? Observable.Return(Unit.Default)
-                : Observable.FromCoroutine(HideAnimation);
+                : HideAnimationAsync().ToObservable().Select(_ => Unit.Default);
             
             return observable.Finally(HideAnimationEnd);
         }
@@ -119,9 +119,9 @@ namespace Boscohyun.UniUI
             HideAnimationBeginSubject.OnNext(this);
         }
         
-        protected virtual IEnumerator HideAnimation()
+        protected virtual async UniTask HideAnimationAsync()
         {
-            yield break;
+            await UniTask.CompletedTask;
         }
 
         protected virtual void HideAnimationEnd()
