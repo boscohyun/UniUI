@@ -13,10 +13,10 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
         [Header("Animation")]
         
         [SerializeField, Range(0f, 2f)]
-        private float showDuration;
+        private float showDuration = 1f;
         
         [SerializeField, Range(0f, 2f)]
-        private float hideDuration;
+        private float hideDuration = 1f;
 
         protected override void ShowAnimationBegin(bool skip = default)
         {

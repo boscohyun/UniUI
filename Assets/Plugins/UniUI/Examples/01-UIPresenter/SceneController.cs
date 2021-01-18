@@ -31,22 +31,8 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
         protected virtual void Awake()
         {
             InitializeSceneButtons();
-            
-            uiPresenter.OnShowAnimationBegin
-                .Subscribe(_ => Debug.Log("UIPresenter Show Animation Begin"))
-                .AddTo(gameObject);
-            uiPresenter.OnShowAnimationEnd
-                .Subscribe(_ => Debug.Log("UIPresenter Show Animation End"))
-                .AddTo(gameObject);
-            uiPresenter.OnHideAnimationBegin
-                .Subscribe(_ => Debug.Log("UIPresenter Hide Animation Begin"))
-                .AddTo(gameObject);
-            uiPresenter.OnHideAnimationEnd
-                .Subscribe(_ => Debug.Log("UIPresenter Hide Animation End"))
-                .AddTo(gameObject);
-            
-            showButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Show()).AddTo(gameObject);
-            hideButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Hide()).AddTo(gameObject);
+            SubscribeButtons();
+            SubscribePresenterState();
         }
 
         protected void InitializeSceneButtons()
@@ -71,6 +57,28 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
                 
                 Addressables.LoadSceneAsync(nextScene);
             }).AddTo(gameObject);
+        }
+
+        protected virtual void SubscribeButtons()
+        {
+            showButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Show()).AddTo(gameObject);
+            hideButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Hide()).AddTo(gameObject);
+        }
+        
+        protected virtual void SubscribePresenterState()
+        {
+            uiPresenter.OnShowAnimationBegin
+                .Subscribe(_ => Debug.Log("UIPresenter Show Animation Begin"))
+                .AddTo(gameObject);
+            uiPresenter.OnShowAnimationEnd
+                .Subscribe(_ => Debug.Log("UIPresenter Show Animation End"))
+                .AddTo(gameObject);
+            uiPresenter.OnHideAnimationBegin
+                .Subscribe(_ => Debug.Log("UIPresenter Hide Animation Begin"))
+                .AddTo(gameObject);
+            uiPresenter.OnHideAnimationEnd
+                .Subscribe(_ => Debug.Log("UIPresenter Hide Animation End"))
+                .AddTo(gameObject);
         }
     }
 }

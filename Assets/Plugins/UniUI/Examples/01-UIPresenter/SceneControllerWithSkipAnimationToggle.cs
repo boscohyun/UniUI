@@ -7,15 +7,21 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
     public class SceneControllerWithSkipAnimationToggle : SceneController
     {
         [SerializeField]
-        private Toggle skipShowAnimationToggle;
+        protected Toggle skipShowAnimationToggle;
         
         [SerializeField]
-        private Toggle skipHideAnimationToggle;
+        protected Toggle skipHideAnimationToggle;
 
-        protected override void Awake()
+        protected override void SubscribeButtons()
         {
-            InitializeSceneButtons();
-            
+            showButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Show(skipShowAnimationToggle.isOn))
+                .AddTo(gameObject);
+            hideButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Hide(skipHideAnimationToggle.isOn))
+                .AddTo(gameObject);
+        }
+
+        protected override void SubscribePresenterState()
+        {
             uiPresenter.OnShowAnimationBegin
                 .Subscribe(_ => Debug.Log($"UIPresenter Show Animation Begin. Skip({skipShowAnimationToggle.isOn})"))
                 .AddTo(gameObject);
@@ -28,9 +34,6 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
             uiPresenter.OnHideAnimationEnd
                 .Subscribe(_ => Debug.Log($"UIPresenter Hide Animation End. Skip({skipHideAnimationToggle.isOn})"))
                 .AddTo(gameObject);
-            
-            showButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Show(skipShowAnimationToggle.isOn)).AddTo(gameObject);
-            hideButton.onClick.AsObservable().Subscribe(_ => uiPresenter.Hide(skipHideAnimationToggle.isOn)).AddTo(gameObject);
         }
     }
 }
