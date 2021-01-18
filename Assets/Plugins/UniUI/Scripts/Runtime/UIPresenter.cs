@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
@@ -132,18 +131,5 @@ namespace Boscohyun.UniUI
         }
 
         #endregion
-    }
-
-    public class UIPresenter<T> : UIPresenter where T : UIPresenter<T>
-    {
-        public void Show(Action<T> callback) => Show(default, callback);
-        
-        public void Show(bool skipAnimation, Action<T> callback) =>
-            ShowAsObservable(skipAnimation).Subscribe(presenter => callback?.Invoke((T) presenter));
-        
-        public virtual IObservable<TResult> ShowAsObservable<TResult>(bool skipAnimation = default) where TResult : T
-        {
-            return ShowAsObservable(skipAnimation).Select(presenter => (TResult) presenter);
-        }
     }
 }
