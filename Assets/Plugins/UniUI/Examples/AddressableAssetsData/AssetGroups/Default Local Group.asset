@@ -45,6 +45,13 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 05a770f53643c488a8da924b453a0718
+    m_Address: Assets/Plugins/UniUI/Examples/01-UIPresenter/ExampleScene0105 - Show
+      UIPresenter with Injections.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eaa2c790c35ae416783cf74a4f7753ab, type: 2}
   m_SchemaSet:
