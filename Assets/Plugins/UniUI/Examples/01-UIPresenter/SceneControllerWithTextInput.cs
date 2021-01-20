@@ -7,7 +7,7 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
     public class SceneControllerWithTextInput : SceneControllerWithSkipAnimationToggle
     {
         [SerializeField]
-        private new UIPresenterWithTextInjection uiPresenterWithTextInjection;
+        private UIPresenterWithTextInjection uiPresenterWithTextInjection;
         
         [SerializeField]
         private InputField inputField;
