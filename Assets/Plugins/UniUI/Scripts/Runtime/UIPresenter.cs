@@ -5,8 +5,9 @@ using UnityEngine;
 
 namespace Boscohyun.UniUI
 {
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(RectTransform))]
-    public class UIPresenter : MonoBehaviour
+    public class UIPresenter : MonoBehaviour, IPresenter<UIPresenter>
     {
         protected enum AnimationState
         {
