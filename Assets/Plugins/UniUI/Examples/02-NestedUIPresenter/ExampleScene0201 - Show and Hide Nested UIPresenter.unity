@@ -1201,7 +1201,7 @@ GameObject:
   - component: {fileID: 802828770}
   - component: {fileID: 802828769}
   - component: {fileID: 802828768}
-  - component: {fileID: 802828773}
+  - component: {fileID: 802828772}
   m_Layer: 5
   m_Name: UIPresenter
   m_TagString: Untagged
@@ -1277,7 +1277,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &802828773
+--- !u!114 &802828772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1286,12 +1286,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 802828767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aff27282652474aaf32d55d2acee179, type: 3}
+  m_Script: {fileID: 11500000, guid: 667d42f7e5474a00a9f63555a258ab75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animationState: 0
   canvasGroup: {fileID: 802828768}
-  injectedText: {fileID: 325901938}
+  nestedPresenter: {fileID: 1322743033}
   showDuration: 1
   hideDuration: 0.3
 --- !u!1 &865890204
@@ -1805,8 +1805,9 @@ GameObject:
   - component: {fileID: 1322743030}
   - component: {fileID: 1322743032}
   - component: {fileID: 1322743031}
+  - component: {fileID: 1322743033}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: NestedUIPresenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1870,6 +1871,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322743029}
   m_CullTransparentMesh: 1
+--- !u!114 &1322743033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322743029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07303825a97d4d128b1b34263731b868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationState: 0
+  injectedText: {fileID: 325901938}
+  showDuration: 0.3
 --- !u!1 &1522997826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,7 +2353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1824404746}
-  - component: {fileID: 1824404747}
+  - component: {fileID: 1824404745}
   m_Layer: 0
   m_Name: SceneController
   m_TagString: Untagged
@@ -2345,6 +2361,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1824404745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824404744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0cd93a461b48bfb03ea7ccde733a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previousSceneButton: {fileID: 83022738}
+  previousScene:
+    m_AssetGUID: 05a770f53643c488a8da924b453a0718
+    m_SubObjectName: 
+    m_SubObjectType: 
+  nextSceneButton: {fileID: 2142845555}
+  nextScene:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+  uiPresenter: {fileID: 0}
+  showButton: {fileID: 1957324480}
+  hideButton: {fileID: 356003897}
+  skipShowAnimationToggle: {fileID: 1199395905}
+  skipHideAnimationToggle: {fileID: 149074837}
+  uiPresenterContainsNestedUIPresenter: {fileID: 802828772}
+  inputField: {fileID: 1522997827}
 --- !u!4 &1824404746
 Transform:
   m_ObjectHideFlags: 0
@@ -2359,35 +2404,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1824404747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824404744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 844a3de5f7cb8475287f669dacc043c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  previousSceneButton: {fileID: 83022738}
-  previousScene:
-    m_AssetGUID: cdcb08d5e29554fa3829cb9c45bbc880
-    m_SubObjectName: 
-    m_SubObjectType: 
-  nextSceneButton: {fileID: 2142845555}
-  nextScene:
-    m_AssetGUID: 94e9f07b1cb68448c9c1bc2b1e2d6ff9
-    m_SubObjectName: 
-    m_SubObjectType: 
-  uiPresenter: {fileID: 0}
-  showButton: {fileID: 1957324480}
-  hideButton: {fileID: 356003897}
-  skipShowAnimationToggle: {fileID: 1199395905}
-  skipHideAnimationToggle: {fileID: 149074837}
-  uiPresenterWithTextInjection: {fileID: 802828773}
-  inputField: {fileID: 1522997827}
 --- !u!1 &1921518231
 GameObject:
   m_ObjectHideFlags: 0

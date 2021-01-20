@@ -52,6 +52,13 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 94e9f07b1cb68448c9c1bc2b1e2d6ff9
+    m_Address: Assets/Plugins/UniUI/Examples/02-NestedUIPresenter/ExampleScene0201
+      - Show and Hide Nested UIPresenter.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eaa2c790c35ae416783cf74a4f7753ab, type: 2}
   m_SchemaSet:
