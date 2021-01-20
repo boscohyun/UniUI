@@ -26,7 +26,7 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
 
             return observable
                 .DelayFrame(1)
-                .Finally(ShowAnimationEnd);
+                .DoOnCompleted(ShowAnimationEnd);
         }
 
         protected override void ShowAnimationBegin(bool skip = default)
@@ -56,7 +56,7 @@ namespace Boscohyun.UniUI.Examples.UIPresenter
             
             return observable
                 .DelayFrame(1)
-                .Finally(HideAnimationEnd);
+                .DoOnCompleted(HideAnimationEnd);
         }
 
         protected override void HideAnimationBegin(bool skip = default)

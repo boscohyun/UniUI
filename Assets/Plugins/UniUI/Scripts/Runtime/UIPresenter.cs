@@ -63,7 +63,7 @@ namespace Boscohyun.UniUI
                 ? Observable.Return(this)
                 : ShowAnimationAsync().ToObservable().Select(_ => this);
 
-            return observable.Finally(ShowAnimationEnd);
+            return observable.DoOnCompleted(ShowAnimationEnd);
         }
 
         protected virtual void ShowAnimationBegin(bool skip = default)
@@ -110,7 +110,7 @@ namespace Boscohyun.UniUI
                 ? Observable.Return(Unit.Default)
                 : HideAnimationAsync().ToObservable().Select(_ => Unit.Default);
             
-            return observable.Finally(HideAnimationEnd);
+            return observable.DoOnCompleted(HideAnimationEnd);
         }
 
         protected virtual void HideAnimationBegin(bool skip = default)
