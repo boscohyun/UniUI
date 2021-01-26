@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Boscohyun.UniUI.Examples.NestedUIPresenter
 {
-    public class SceneControllerWithTextInput02 : UIPresenter.SceneControllerWithSkipAnimationToggle
+    public class SceneControllerWithTextInput : UIPresenter.SceneControllerWithSkipAnimationToggle
     {
         [SerializeField]
         private UIPresenterContainsNestedUIPresenter uiPresenterContainsNestedUIPresenter;
