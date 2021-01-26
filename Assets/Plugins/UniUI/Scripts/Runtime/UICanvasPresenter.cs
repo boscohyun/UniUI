@@ -18,6 +18,8 @@ namespace Boscohyun.UniUI
 
         protected HideMode hideMode;
 
+        protected virtual HideMode DefaultHideMode => HideMode.UseCanvas;
+
         protected override void ShowAnimationBegin(bool skip = default)
         {
             animationState = AnimationState.InShowAnimation;
@@ -35,11 +37,15 @@ namespace Boscohyun.UniUI
             ShowAnimationBeginSubject.OnNext(this);
         }
 
-        public override void Hide() => Hide(default, default, null);
+        public override void Hide() => Hide(DefaultHideMode, default, null);
 
-        public override void Hide(bool skipAnimation) => Hide(default, skipAnimation, null);
+        public override void Hide(bool skipAnimation) => Hide(DefaultHideMode, skipAnimation, null);
 
-        public override void Hide(Action callback) => Hide(default, default, callback);
+        public override void Hide(Action callback) => Hide(DefaultHideMode, default, callback);
+        
+        public virtual void Hide(HideMode hideMode, bool skipAnimation) => Hide(hideMode, skipAnimation, null);
+
+        public virtual void Hide(HideMode hideMode, Action callback) => Hide(hideMode, default, callback);
 
         public virtual void Hide(HideMode hideMode, bool skipAnimation, Action callback)
         {
