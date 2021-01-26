@@ -59,6 +59,13 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 9d1d8a54b4adc452d913b79b40f63f15
+    m_Address: Assets/Plugins/UniUI/Examples/03-UICanvasPresenter/ExampleScene0301
+      - Show and Hide UICanvasPresenter.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eaa2c790c35ae416783cf74a4f7753ab, type: 2}
   m_SchemaSet:
