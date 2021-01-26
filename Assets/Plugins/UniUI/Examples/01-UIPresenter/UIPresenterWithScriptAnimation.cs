@@ -1,6 +1,4 @@
-using System.Collections;
 using Cysharp.Threading.Tasks;
-using UniRx;
 using UnityEngine;
 
 namespace Boscohyun.UniUI.Examples.UIPresenter
