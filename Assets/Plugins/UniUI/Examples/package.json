@@ -1,7 +1,7 @@
 {
   "name": "com.boscohyun.uniui.examples",
   "displayName": "UniUI Examples",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "unity": "2020.2",
   "description": "Examples of UniUI.",
   "keywords": [ "UniUI", "Example" ],

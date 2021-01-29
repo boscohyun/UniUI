@@ -1,7 +1,7 @@
 {
   "name": "com.boscohyun.uniui",
   "displayName": "UniUI",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "unity": "2020.2",
   "description": "A simple UI management package for Unity.",
   "keywords": [ "UI", "Manager", "MVP", "MVRP", "UniRx", "UniTask" ],
