@@ -1993,6 +1993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationState: 0
   canvas: {fileID: 802828768}
+  hideMode: 0
   leftText: {fileID: 325901938}
   rightText: {fileID: 1152594345}
 --- !u!1 &865890204
@@ -2704,7 +2705,24 @@ MonoBehaviour:
 
 
     This is <b>UICanvasPresenter</b> with
-    script animation.'
+    frame count texts.
+
+
+    You can choose <b>HideMode</b> of UICanvasPresenter
+    between <b>UseGameObject</b> and <b>UseCanvas</b>.
+
+
+    UseGameObject: Set the
+    activation of the GameObject.
+
+    <b>The MonoBehaviour life cycle events is
+    called.</b>
+
+
+    UseCavnas: Set the enable of the Canvas.
+
+    <b>The MonoBehaviour
+    life cycle events <color=red>never</color> called.</b>'
 --- !u!222 &1193877813
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3003,8 +3021,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: -40, y: -600}
+  m_AnchoredPosition: {x: 0, y: -175}
+  m_SizeDelta: {x: -40, y: -750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1285729877
 MonoBehaviour:
@@ -3286,9 +3304,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Use Canvas
-      m_Image: {fileID: 0}
     - m_Text: Use GameObject
+      m_Image: {fileID: 0}
+    - m_Text: Use Canvas
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3846,7 +3864,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use Canvas
+  m_Text: Use GameObject
 --- !u!222 &1869858732
 CanvasRenderer:
   m_ObjectHideFlags: 0
