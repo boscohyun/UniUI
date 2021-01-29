@@ -3,6 +3,9 @@
 [![openupm](https://img.shields.io/npm/v/com.boscohyun.uniui?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.boscohyun.uniui/)
 [![openupm](https://img.shields.io/npm/v/com.boscohyun.uniui.examples?label=openupm(examples)&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.boscohyun.uniui.examples/)
 
+- **UniUI** pursues UI management with the simplest structure.
+- **UniUI** uses [UniRx](https://github.com/neuecc/UniRx) and [UniTask](https://github.com/Cysharp/UniTask) to obtain various advantages.
+
 # UPM
 
 You can edit `manifest.json` to add **UniUI** and example packages.
