@@ -1,6 +1,7 @@
 # UniUI
 
-Created by Hyun Seungmin(boscohyun)
+[![openupm](https://img.shields.io/npm/v/com.boscohyun.uniui?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.boscohyun.uniui/)
+[![openupm](https://img.shields.io/npm/v/com.boscohyun.uniui.examples?label=openupm(examples)&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.boscohyun.uniui.examples/)
 
 # UPM
 
@@ -25,3 +26,13 @@ If you want a specific release version(e.g.,`0.1.0`), you can add it like below.
   }
 }
 ```
+
+## OpenUPM
+
+If you are using openupm, use the command below.
+
+```
+> openupm add com.boscohyun.uniui
+> openupm add com.boscohyun.uniui.examples
+```
+

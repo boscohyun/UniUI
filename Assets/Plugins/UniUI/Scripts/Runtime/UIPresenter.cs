@@ -11,7 +11,7 @@ namespace Boscohyun.UniUI
     {
         protected enum AnimationState
         {
-            Shown = 0,
+            Shown = default,
             Hidden,
             InShowAnimation,
             InHideAnimation,
@@ -41,13 +41,13 @@ namespace Boscohyun.UniUI
 
         #region Show
 
-        public void Show() => Show(default, null);
+        public virtual void Show() => Show(default, null);
         
-        public void Show(bool skipAnimation) => Show(skipAnimation, null);
+        public virtual void Show(bool skipAnimation) => Show(skipAnimation, null);
         
-        public void Show(Action<UIPresenter> callback) => Show(default, callback);
+        public virtual void Show(Action<UIPresenter> callback) => Show(default, callback);
         
-        public void Show(bool skipAnimation, Action<UIPresenter> callback) =>
+        public virtual void Show(bool skipAnimation, Action<UIPresenter> callback) =>
             ShowAsObservable(skipAnimation).Subscribe(presenter => callback?.Invoke(presenter));
 
         public virtual IObservable<UIPresenter> ShowAsObservable(bool skipAnimation = default)
@@ -88,13 +88,13 @@ namespace Boscohyun.UniUI
 
         #region Hide
 
-        public void Hide() => Hide(default, null);
+        public virtual void Hide() => Hide(default, null);
         
-        public void Hide(bool skipAnimation) => Hide(skipAnimation, null);
+        public virtual void Hide(bool skipAnimation) => Hide(skipAnimation, null);
         
-        public void Hide(Action callback) => Hide(default, callback);
+        public virtual void Hide(Action callback) => Hide(default, callback);
         
-        public void Hide(bool skipAnimation, Action callback) =>
+        public virtual void Hide(bool skipAnimation, Action callback) =>
             HideAsObservable(skipAnimation).Subscribe(_ => callback?.Invoke());
 
         public virtual IObservable<Unit> HideAsObservable(bool skipAnimation = default)
