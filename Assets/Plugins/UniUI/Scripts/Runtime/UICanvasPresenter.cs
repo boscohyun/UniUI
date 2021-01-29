@@ -9,47 +9,46 @@ namespace Boscohyun.UniUI
     {
         public enum HideMode
         {
-            UseCanvas = default,
-            UseGameObject,
+            UseGameObject = default,
+            UseCanvas,
         }
 
         [SerializeField]
         protected Canvas canvas;
 
+        [SerializeField]
         protected HideMode hideMode;
-
-        protected virtual HideMode DefaultHideMode => HideMode.UseCanvas;
 
         protected override void ShowAnimationBegin(bool skip = default)
         {
             animationState = AnimationState.InShowAnimation;
-
-            if (!gameObject.activeSelf)
-            {
-                gameObject.SetActive(true);
-            }
 
             if (!canvas.enabled)
             {
                 canvas.enabled = true;
             }
 
+            if (!gameObject.activeSelf)
+            {
+                gameObject.SetActive(true);
+            }
+
             ShowAnimationBeginSubject.OnNext(this);
         }
 
-        public override void Hide() => Hide(DefaultHideMode, default, null);
+        public override void Hide() => Hide(hideMode, default, null);
 
-        public override void Hide(bool skipAnimation) => Hide(DefaultHideMode, skipAnimation, null);
+        public override void Hide(bool skipAnimation) => Hide(hideMode, skipAnimation, null);
 
-        public override void Hide(Action callback) => Hide(DefaultHideMode, default, callback);
+        public override void Hide(Action callback) => Hide(hideMode, default, callback);
         
-        public virtual void Hide(HideMode hideMode, bool skipAnimation) => Hide(hideMode, skipAnimation, null);
+        public virtual void Hide(HideMode hideModeParam, bool skipAnimation) => Hide(hideModeParam, skipAnimation, null);
 
-        public virtual void Hide(HideMode hideMode, Action callback) => Hide(hideMode, default, callback);
+        public virtual void Hide(HideMode hideModeParam, Action callback) => Hide(hideModeParam, default, callback);
 
-        public virtual void Hide(HideMode hideMode, bool skipAnimation, Action callback)
+        public virtual void Hide(HideMode hideModeParam, bool skipAnimation, Action callback)
         {
-            this.hideMode = hideMode;
+            hideMode = hideModeParam;
             HideAsObservable(skipAnimation).Subscribe(_ => callback?.Invoke());
         }
 
@@ -57,14 +56,14 @@ namespace Boscohyun.UniUI
         {
             switch (hideMode)
             {
-                case HideMode.UseCanvas:
-                    canvas.enabled = false;
-                    break;
                 case HideMode.UseGameObject:
                     gameObject.SetActive(false);
                     break;
+                case HideMode.UseCanvas:
+                    canvas.enabled = false;
+                    break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(hideMode.ToString());
             }
 
             HideAnimationEndSubject.OnNext(this);
